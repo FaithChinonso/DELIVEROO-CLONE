@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Image,
   TextInput,
+  ScrollView,
 } from "react-native";
 import {
   UserIcon,
@@ -15,6 +16,7 @@ import {
   MagnifyingGlassIcon,
   AdjustmentsHorizontalIcon,
 } from "react-native-heroicons/outline";
+import Categories from "./components/Categories";
 const HomeScreen = () => {
   const navigation = useNavigation();
 
@@ -70,6 +72,10 @@ const HomeScreen = () => {
           <AdjustmentsHorizontalIcon color="#00CCBB" />
         )}
       </View>
+      {/* body */}
+      <ScrollView className="flex-1 bg-gray-100">
+        <Categories />
+      </ScrollView>
     </SafeAreaView>
   );
 };
