@@ -7,7 +7,7 @@ const CategoryCard = ({ imgUri, title }) => {
         source={{
           uri: imgUri,
         }}
-        className="h-20 w-20 rounded"
+        className="h-21 w-21 rounded"
       />
       <Text className="absolute bottom-1 left-1 text-white font-bold">
         {title}
@@ -15,5 +15,4 @@ const CategoryCard = ({ imgUri, title }) => {
     </TouchableOpacity>
   );
 };
-
 export default CategoryCard;
