@@ -17,12 +17,12 @@ export default function RestaurantCard({
   lat,
 }) {
   return (
-    <TouchableOpacity className="bg-white mr-3 shadow">
+    <TouchableOpacity className="bg-white mr-3 shadow w-64">
       <Image
         source={{
           uri: urlFor(imgUrl).url(),
         }}
-        className="h-36 w-64 rounded-sm bg-black"
+        className="h-36 w-64 rounded-sm bg-gray-800"
       />
       <View className="px-3 pb-4">
         <Text className="text-lg pt-2 font-bold">{title}</Text>
