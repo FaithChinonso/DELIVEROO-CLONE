@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
-import SecondScreen from "./screens/SecondScreen";
+import RestaurantScreen from "./screens/RestaurantScreen";
 import ThirdScreen from "./screens/ThirdScreen";
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Second" component={SecondScreen} />
+        <Stack.Screen name="Restaurant" component={RestaurantScreen} />
         <Stack.Screen name="Third" component={ThirdScreen} />
       </Stack.Navigator>
     </NavigationContainer>

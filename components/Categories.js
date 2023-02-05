@@ -16,7 +16,7 @@ const Categories = () => {
       )
       .then(data => setCategories(data));
   }, []);
-  console.log(categories);
+
   return (
     <ScrollView
       horizontal
@@ -26,13 +26,8 @@ const Categories = () => {
       }}
       showsHorizontalScrollIndicator={false}
     >
-      {/* category card */}
-      {categories?.map(item => (
-        <CategoryCard
-          key={item._id}
-          imgUrl={urlFor(item.image.asset).url()}
-          title={item.name}
-        />
+      {categories.map(item => (
+        <CategoryCard key={item._id} imgUrl={item.image} title={item.name} />
       ))}
     </ScrollView>
   );
