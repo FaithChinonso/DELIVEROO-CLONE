@@ -1,11 +1,38 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PlusIcon, MinusIcon } from "react-native-heroicons/solid";
 import { urlFor } from "../sanity";
 import Currency from "react-currency-formatter";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToBasket,
+  filterItems,
+  removeFromBasket,
+  selectBasketItems,
+  selectBasketItemsWithId,
+} from "../features/basketSlice";
 
-const DishCard = ({ title, short_description, price, imgUrl }) => {
+const DishCard = ({ id, title, short_description, price, imgUrl }) => {
   const [isPressed, setIsPressed] = useState(false);
+  const dispatch = useDispatch();
+  const { items } = useSelector(state => state.basket);
+  const [item, setItem] = useState({});
+  // const item = useSelector(state =>
+  //   state.basket.items.filter(item => item.id === id)
+  // );
+
+  const addItemToBasket = () => {
+    dispatch(addToBasket({ id, title, short_description, price, imgUrl }));
+  };
+  const removeItemFromBasket = () => {
+    if (item.quantity === 0) return;
+    dispatch(removeFromBasket(id));
+  };
+  useEffect(() => {
+    const it = items.find(item => item.id === id);
+    setItem(it);
+  }, [id, items]);
+
   return (
     <>
       <TouchableOpacity
@@ -32,11 +59,20 @@ const DishCard = ({ title, short_description, price, imgUrl }) => {
       </TouchableOpacity>
       {isPressed ? (
         <View className="flex-row space-x-2 items-center bg-white p-4">
-          <TouchableOpacity className="bg-[#00CCBB] rounded-full p-2">
+          <TouchableOpacity
+            className="bg-[#00CCBB] rounded-full p-2"
+            onPress={addItemToBasket}
+          >
             <PlusIcon size={30} color="#FFFFFF" />
           </TouchableOpacity>
-          <Text className="text-xs">3</Text>
-          <TouchableOpacity className="bg-[#00CCBB] rounded-full p-2">
+          <Text className="text-xs">{item?.quantity}</Text>
+          <TouchableOpacity
+            disabled={item?.quantity === 0}
+            className={`${
+              item?.quantity ? "bg-[#00CCBB]" : "bg-gray-400"
+            } rounded-full p-2`}
+            onPress={removeItemFromBasket}
+          >
             <MinusIcon size={30} color="#FFFFFF" />
           </TouchableOpacity>
         </View>

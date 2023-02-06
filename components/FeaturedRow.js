@@ -52,7 +52,7 @@ export default function FeaturedRow({ id, title, description }) {
             address={res.address}
             short_description={res.short_description}
             dishes={res.dishes}
-            long={res.long}
+            long={res.Long}
             lat={res.lat}
           />
         ))}
