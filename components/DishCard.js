@@ -65,7 +65,7 @@ const DishCard = ({ id, title, short_description, price, imgUrl }) => {
           >
             <PlusIcon size={30} color="#FFFFFF" />
           </TouchableOpacity>
-          <Text className="text-xs">{item?.quantity}</Text>
+          <Text className="text-xs">{item?.quantity || 0}</Text>
           <TouchableOpacity
             disabled={item?.quantity === 0}
             className={`${
