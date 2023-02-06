@@ -6,24 +6,28 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { XMarkIcon } from "react-native-heroicons/solid";
 import BasketRow from "../components/BasketRow";
 import { useDispatch, useSelector } from "react-redux";
 import Currency from "react-currency-formatter";
-import {
-  addToBasket,
-  removeFromBasket,
-  selectBasketItems,
-  totalAmount,
-  selectRestaurant,
-} from "../features/basketSlice";
+import { emptyCart } from "../features/basketSlice";
 import { useNavigation } from "@react-navigation/native";
 
 const BasketScreen = () => {
   const { items, totalAmount } = useSelector(state => state.basket);
   const { restaurant } = useSelector(state => state.restaurant);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const cancelOrderHandler = () => {
+    dispatch(emptyCart());
+  };
+  useEffect(() => {
+    if (items.length === 0) {
+      navigation.navigate("Welcome");
+    }
+  }, [items]);
 
   return (
     <SafeAreaView className=" h-full justify-between">
@@ -31,7 +35,7 @@ const BasketScreen = () => {
         <Text className="font-extrabold text-lg">Basket</Text>
         <Text className="text-gray-400">{restaurant.title}</Text>
         <TouchableOpacity
-          className="bg-[#00ccbb] rounded-full p-2 absolute right-3 top-[50%] -translate-y-[50%]"
+          className="bg-primary rounded-full p-2 absolute right-3 top-[50%] -translate-y-[50%]"
           onPress={() => navigation.goBack()}
         >
           <XMarkIcon size={20} color="#ffffff" />
@@ -39,14 +43,12 @@ const BasketScreen = () => {
       </View>
       <View className="bg-white my-6 p-4 flex-row items-center space-x-4">
         <Image
-          source={{
-            uri: "https://links.papareact.com/wru",
-          }}
+          source={require("../assets/Borcelle.png")}
           className="h-7 w-7 bg-gray-300 rounded-full"
         />
         <Text className="flex-1">Deliver in 50 - 75 minutes</Text>
         <TouchableOpacity>
-          <Text className="text-[#00CCBB]">Change</Text>
+          <Text className="text-primary">Change</Text>
         </TouchableOpacity>
       </View>
       <ScrollView className="flex-1">
@@ -81,14 +83,24 @@ const BasketScreen = () => {
             <Currency quantity={totalAmount + 500} currency="NGN" />
           </Text>
         </View>
-        <TouchableOpacity
-          className="bg-[#00CCBB] rounded-lg p-4"
-          onPress={() => navigation.navigate("Processing")}
-        >
-          <Text className="text-white text-center text-lg font-bold">
-            Place Order
-          </Text>
-        </TouchableOpacity>
+        <View className="flex-row space-x-4 items-center justify-center">
+          <TouchableOpacity
+            className="bg-primary rounded-lg py-4 px-8"
+            onPress={() => navigation.navigate("Processing")}
+          >
+            <Text className="text-white text-center text-lg font-bold">
+              Confirm
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className="bg-white rounded-lg py-4 px-8 border border-primary"
+            onPress={cancelOrderHandler}
+          >
+            <Text className="text-primary text-center text-lg font-bold">
+              Cancel
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );

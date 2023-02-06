@@ -14,7 +14,7 @@ const ProcessingScreen = () => {
 
   return (
     <SafeAreaView className=" items-center justify-center flex-1 bg-[rgba(0,0,0,0.5)]">
-      <Progress.Circle size={90} indeterminate={true} color="#00CCBB" />
+      <Progress.Circle size={90} indeterminate={true} color="#A34100" />
       <Animatable.Text
         animation="slideInUp"
         iterationCount={1}

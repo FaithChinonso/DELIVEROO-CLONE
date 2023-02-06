@@ -66,13 +66,13 @@ function RestaurantScreen() {
   return (
     <>
       <Basket />
-      <ScrollView style={styles.droidSafeArea}>
-        <View className="relative">
+      <ScrollView style={styles.droidSafeArea} className="">
+        <View className="relative bg-primary">
           <Image
             source={{
               uri: urlFor(imgUrl).url(),
             }}
-            className="w-full h-56 bg-gray-800 p-5"
+            className="w-full h-56 bg-gray-800 p-5 rounded-br-[60px] rounded-tl-[60px]"
           />
           <TouchableOpacity
             className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full"
@@ -80,17 +80,21 @@ function RestaurantScreen() {
               navigation.goBack();
             }}
           >
-            <ArrowLeftIcon size={20} color="#00CCBB" />
+            <ArrowLeftIcon size={20} color="#A34100" />
           </TouchableOpacity>
+          <View className="bg-white p-4 rounded-3xl absolute -bottom-5 right-5 shadow-md shadow-black border border-gray-800">
+            <Text>25-45 MIN</Text>
+          </View>
         </View>
+
         <View className="bg-white px-4 py-4">
           <View className=" ">
             <Text className="text-3xl font-bold">{title}</Text>
             <View className="flex-row space-x-2 my-1">
               <View className="flex-row items-start space-x-1">
-                <StarIcon color="green" opacity={0.5} size={22} />
+                <StarIcon color="#A34100" opacity={0.5} size={22} />
                 <Text className="text-xs text-gray-500">
-                  <Text className="text-green-500">{rating} </Text> . {genre}
+                  <Text className="text-primary">{rating} </Text> . {genre}
                 </Text>
               </View>
               <View className="flex-row items-start space-x-1 w-[200px]">
@@ -103,13 +107,13 @@ function RestaurantScreen() {
             </View>
           </View>
           <Text className="text-gray-500 mt-2 pb-4 ">{short_description}</Text>
-          <TouchableOpacity className="flex-row items-center space-x-2 py-4 border-y border-gray-300">
+          {/* <TouchableOpacity className="flex-row items-center space-x-2 py-4 border-y border-gray-300">
             <QuestionMarkCircleIcon color="gray" opacity={0.6} size={20} />
             <Text className="pl-2 flex-1 text-md font-bold">
               Have a food allergy?
             </Text>
-            <ChevronRightIcon color="#00CCBB" />
-          </TouchableOpacity>
+            <ChevronRightIcon color="#A34100" />
+          </TouchableOpacity> */}
         </View>
         <Text className="text-xl font-bold px-4 py-4">Menu</Text>
         <View className="pb-36">

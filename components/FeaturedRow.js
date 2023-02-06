@@ -3,9 +3,13 @@ import React, { useEffect, useState } from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import RestaurantCard from "./RestaurantCard";
 import client from "../sanity";
+import { useDispatch, useSelector } from "react-redux";
+import { addRestaurants } from "../features/restaurantSlice";
 
 export default function FeaturedRow({ id, title, description }) {
-  const [restaurants, setRestaurants] = useState([]);
+  const dispatch = useDispatch();
+  const { restaurants } = useSelector(state => state.restaurant);
+  const [res, setRes] = useState([]);
   useEffect(() => {
     client
       .fetch(
@@ -22,7 +26,7 @@ export default function FeaturedRow({ id, title, description }) {
     `,
         { id }
       )
-      .then(data => setRestaurants(data?.restaurants));
+      .then(data => setRes(data?.restaurants));
   }, [id]);
 
   return (
@@ -30,7 +34,7 @@ export default function FeaturedRow({ id, title, description }) {
       <View className="mt-4 flex-row items-center justify-between px-4">
         <Text className="font-bold text-lg">{title}</Text>
 
-        <ArrowRightIcon color="#00CCBB" />
+        <ArrowRightIcon color="#A34100" />
       </View>
       <Text className="text-xs text-gray-500 px-4">{description}</Text>
       <ScrollView
@@ -41,7 +45,7 @@ export default function FeaturedRow({ id, title, description }) {
         showsHorizontalScrollIndicator={false}
         className="pt-4"
       >
-        {restaurants?.map(res => (
+        {res?.map(res => (
           <RestaurantCard
             key={res._id}
             id={res._id}

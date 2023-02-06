@@ -53,14 +53,14 @@ const DishCard = ({ id, title, short_description, price, imgUrl }) => {
             source={{
               uri: urlFor(imgUrl).url(),
             }}
-            className="h-20 w-20 rounded-sm bg-gray-800"
+            className="h-20 w-20 rounded-full bg-gray-800"
           />
         </View>
       </TouchableOpacity>
       {isPressed ? (
-        <View className="flex-row space-x-2 items-center bg-white p-4">
+        <View className="flex-row space-x-2 items-center bg-white p-4 justify-end">
           <TouchableOpacity
-            className="bg-[#00CCBB] rounded-full p-2"
+            className="bg-primary rounded-full p-2"
             onPress={addItemToBasket}
           >
             <PlusIcon size={30} color="#FFFFFF" />
@@ -69,7 +69,7 @@ const DishCard = ({ id, title, short_description, price, imgUrl }) => {
           <TouchableOpacity
             disabled={item?.quantity === 0}
             className={`${
-              item?.quantity ? "bg-[#00CCBB]" : "bg-gray-400"
+              item?.quantity ? "bg-primary" : "bg-gray-400"
             } rounded-full p-2`}
             onPress={removeItemFromBasket}
           >

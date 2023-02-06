@@ -13,6 +13,7 @@ const initialState = {
     long: null,
     lat: null,
   },
+  restaurants: [],
 };
 
 export const restaurantSlice = createSlice({
@@ -22,11 +23,14 @@ export const restaurantSlice = createSlice({
     setRestaurant: (state, action) => {
       state.restaurant = action.payload;
     },
+    addRestaurants: (state, action) => {
+      state.restaurants = [...state.restaurants, ...action.payload];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setRestaurant } = restaurantSlice.actions;
+export const { setRestaurant, addRestaurants } = restaurantSlice.actions;
 export const selectBasketItems = state => state.basket.items;
 
 export default restaurantSlice.reducer;

@@ -12,7 +12,7 @@ const BasketRow = ({ quantity, imgUrl, title, price, totalPrice, id }) => {
   };
   return (
     <View className="flex-row space-x-2 px-4 py-6 border-b border-gray-100 items-center bg-white">
-      <Text className="text-[#00CCBB] text-xs">{quantity}x</Text>
+      <Text className="text-primary text-xs">{quantity}x</Text>
       <Image
         source={{
           uri: urlFor(imgUrl).url(),
@@ -24,7 +24,7 @@ const BasketRow = ({ quantity, imgUrl, title, price, totalPrice, id }) => {
         <Currency quantity={totalPrice} currency="NGN" />
       </Text>
       <TouchableOpacity onPress={removeItemHandler}>
-        <Text className="text-[#00CCBB]">Remove</Text>
+        <Text className="text-primary">Remove</Text>
       </TouchableOpacity>
     </View>
   );

@@ -6,6 +6,7 @@ import BasketScreen from "./screens/BasketScreen";
 import ProcessingScreen from "./screens/ProcessingScreen";
 import { store } from "./store";
 import { Provider } from "react-redux";
+import WelcomeScreen from "./screens/WelcomeScreen";
 import DeliveryScreen from "./screens/DeliveryScreen";
 
 export default function App() {
@@ -14,7 +15,12 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen
+            name="Home"
+            component={WelcomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Welcome" component={HomeScreen} />
           <Stack.Screen name="Restaurant" component={RestaurantScreen} />
           <Stack.Screen
             name="Basket"
@@ -24,7 +30,10 @@ export default function App() {
           <Stack.Screen
             name="Processing"
             component={ProcessingScreen}
-            options={{ presentation: "transparentModal", headerShown: false }}
+            options={{
+              presentation: "containedTransparentModal",
+              headerShown: false,
+            }}
           />
           <Stack.Screen
             name="Delivery"

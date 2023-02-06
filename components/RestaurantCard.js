@@ -45,10 +45,10 @@ export default function RestaurantCard({
       <View className="px-3 pb-4">
         <Text className="text-lg pt-2 font-bold">{title}</Text>
         <View className="flex-row items-center space-x-1">
-          <StarIcon color="green" opacity={0.5} size={22} />
+          <StarIcon color="#A34100" opacity={0.5} size={22} />
 
           <Text className="text-xs text-gray-500">
-            <Text className="text-green-500">{rating} </Text> . {genre}
+            <Text className="text-primary">{rating} </Text> . {genre}
           </Text>
         </View>
         <View className="flex-row items-center space-x-1">

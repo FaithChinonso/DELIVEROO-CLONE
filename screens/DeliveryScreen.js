@@ -43,7 +43,7 @@ const DeliveryScreen = () => {
             progress={0.3}
             width={200}
             indeterminate={true}
-            color="#00ccbb"
+            color="#A34100"
           />
           <Text className="mt-3 text-gray-500">
             Your Order at {restaurant.title} is being prepared
@@ -65,7 +65,7 @@ const DeliveryScreen = () => {
           title={restaurant.title}
           description={restaurant.short_description}
           identifier="origin"
-          pinColor="#00CCBB"
+          pinColor="#A34100"
         />
       </MapView>
       <SafeAreaView className="bg-white flex-row items-center space-x-5 h-28">
